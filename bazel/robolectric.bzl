@@ -92,4 +92,12 @@ def robolectric_repositories():
     """Creates http_jar repositories for the given versions of Robolectric.
     """
     for v in DEFAULT_AVAILABLE_VERSIONS:
-        http_file(name = v.name, url = v.url, downloaded_file_path = "android-all-instrumented-%s.jar" % (v.version), sha256 = v.sha256)
+        robolectric_repository(v.name, v.url, v.version, v.sha256)
+
+def robolectric_repository(name, url, version, sha256):
+    """Creates http_jar repository for the given version of Robolectric.
+
+        Args:
+            robolectric_version (struct): A struct describing Robolectric version, see robolectric_version().
+    """
+    http_file(name = name, url = url, downloaded_file_path = "android-all-instrumented-%s.jar" % (version), sha256 = sha256)
